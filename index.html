@@ -1,0 +1,111 @@
+<!--
+
+This was the very first project I made after enrolling in my JavaScript course.
+
+It uses primarily HTML and CSS, and a little bit of JavaScript to do the calculations.
+
+If you want to learn about HTML, CSS, and JavaScript, and what they do. Check the
+HTML comments on the 'Google Chat Textbox Remake' Project!-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>BMI Calculator (Body Mass Index)</title>
+</head>
+<body>
+    <h1 class="header">BMI Calculator</h1>
+    <h2>The BMI, also known as the Body Mass Index is an index which groups people into certain body weight groups.</h2>
+    <h3>You can calculate your BMI by dividing your weight by your height squared.</h3>
+    <div class="inputs">
+        <p>Please Input your Weight and Height (kgs and cm)</p>
+        <label for="input">Height:</label>
+        <input type="number" placeholder="Height (cm)" id="height"> 
+        <br><br>
+        <label for="input">Weight:</label>
+        <input type="number" placeholder="Weight (kg)" id="weight"> 
+        <br><br>
+        <button class="submit" id="submit">Submit</button><br>
+        <p class="result" id="result">BMI: </p>
+        <p class="body_type" id="body_type">Body Type: </p>
+    </div>
+    <style>
+    * {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+h2 {
+    width: 500px;
+    font-size: large;
+}
+
+h3 {
+    font-size: medium;
+}
+
+input {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+    padding-left: 10px;
+    width: 80px;
+}
+
+.inputs {
+    display: inline-block;
+    margin: 50px;
+    border-style: solid;
+    padding: 20px;
+}
+
+.submit {
+    padding: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    font-weight: bolder;
+    color: black;
+    background-color: white;
+    opacity: 50%;
+    transition: opacity 0.5s;
+}
+
+.submit:hover{
+    opacity: 80%;
+}
+.submit:active{
+    opacity: 100%;
+}</style>
+    <script>
+        let submit = document.getElementById("submit");
+let weight = document.getElementById("weight");
+let height = document.getElementById("height");
+let result = document.getElementById("result");
+let body_type = document.getElementById("body_type");
+
+submit.onclick = function() {
+    let weightValue = weight.value
+    let heightValue = height.value / 100 // converts centimeters into meters
+
+    if (weightValue <= 0 || heightValue <= 0) {
+        alert("Please Input Information");
+    } else {
+        let bmi = weightValue / (heightValue * heightValue);
+        let bodyType;
+        if (bmi < 18.5) {bodyType = "Underweight";}
+        else if (bmi > 18.5 && bmi < 24.9) {bodyType = "Normal";}
+        else if (bmi > 25 && bmi < 29.9) {bodyType = "Overweight";}
+        else {bodyType = "Obese";}
+        result.textContent = `BMI: ${bmi.toFixed(2)}`;
+        body_type.textContent = `Body Type: ${bodyType}`
+        
+    }
+}
+
+    </script>
+</body>
+</html>
